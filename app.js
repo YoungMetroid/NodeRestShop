@@ -6,10 +6,12 @@ const bodyparser = require('body-parser');
 
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
-const errorFilePath = './api/Logs/error.Log';
-const logHandler = require('./api/Logs/Logger');
+const errorFile = './api/Logger/error.Log';
+const errorFilePath = './api/Logger/';
+const logs = require('./api/Logger/Logger');
 
-logHandler.writeToFile('test.log', 'Felipe');
+logHandler = new logs.Logger();
+logHandler.createMessage('CreateTest');
 
 
 app.use(morgan('dev'));
@@ -30,11 +32,12 @@ app.use((req,res, next)=>{
 
 app.use((errorMessage,req,res,next)=>{
     
-    if(fs.exists(errorFilePath, err =>{
-        console.log('This should be first');
-        if(!err) writeFile(errorMessage,errorFilePath);
+    if(fs.exists(errorFilePath, (err) =>{
+        if(err) {
+            logHandler.streamToFile(errorFile,errorMessage);
+        }
         else{
-            appendToFile(errorMessage,errorFilePath);
+           console.log('The path: ' + errorFilePath + 'does not exist');
         }
     }))
 

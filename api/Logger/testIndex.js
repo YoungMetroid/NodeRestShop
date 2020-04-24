@@ -1,3 +1,5 @@
 const logHandler = require('./Logger');
 
-logHandler.writeToFile('test.log', 'Felipe');
+log = new logHandler.Logger();
+let text = log.createMessage("tst");
+console.log(text);
