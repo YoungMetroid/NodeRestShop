@@ -13,7 +13,7 @@ class Logger{
         message += this.asterick;
         return message;
     }
-    streamToFile = (filePath,text)=>{
+    streamToFile(filePath,text){
         text = this.createMessage(text);
         let writeStream = fs.createWriteStream(filePath,{ 'flags': 'a', 'encoding': null, 'mode': '0666'});
         writeStream.write(text,'UTF8');
