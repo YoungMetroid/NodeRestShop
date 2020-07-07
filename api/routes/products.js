@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
-const Product = require('../models/product')
+const Product = require('../models/product');
 const logs = require('../Logger/Logger');
 const errorFile = './api/Logger/error.Log';
 
@@ -31,7 +31,9 @@ router.post('/', (req, res, next) =>{
         name: req.body.name,
         price: req.body.price
     });
-    product.save().then(result =>{
+    product
+        .save()
+        .then(result =>{
         console.log("Saving: "+ result);
         res.status(201).json({
             message: 'Handling Post request to /products',

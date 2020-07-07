@@ -20,7 +20,7 @@ class Logger{
         writeStream.end();
 
         writeStream.on('finish', ()=>{
-            console.log('Write Completed');
+            console.log('Write to Log Completed');
         })
         
         writeStream.on('error', error=>{

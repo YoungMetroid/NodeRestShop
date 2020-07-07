@@ -6,17 +6,20 @@ const bodyparser = require('body-parser');
 const mongoose= require('mongoose');
 
 
+
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 const errorFile = './api/Logger/error.Log';
 const errorFilePath = './api/Logger/';
 const logs =  new require('./api/Logger/Logger');
 
-logHandler = new logs.Logger();
-logHandler.createMessage('CreateTest');
-
-
-mongoose.connect('mongodb+srv://youngmetroid:' + process.env.MONGO_ATLAS_PW +'@node-rest-shop-ubhfg.mongodb.net/test?retryWrites=true&w=majority',
+//logHandler = new logs.Logger();
+//logHandler.createMessage('CreateTest');
+console.log(process.env.MONGO_ATLAS_PW);
+mongoose.connect(
+    "mongodb+srv://youngmetroid:"+ 
+    process.env.MONGO_ATLAS_PW+
+    "@node-rest-shop-ubhfg.mongodb.net/test?retryWrites=true&w=majority",
 {
     useNewUrlParser:true,
     useUnifiedTopology:true
